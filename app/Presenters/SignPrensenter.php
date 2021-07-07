@@ -32,6 +32,14 @@ final class SignPresenter extends BasePresenter
             );
 
             $this->getUser()->login((string) $row->id);
+            $this->flashMessage('Login successful', 'info');
+            $this->redirect('Homepage:');
         }
+    }
+
+    public function actionOut()
+    {
+        $this->getUser()->logout(true);
+        $this->redirect('Homepage:');
     }
 }
