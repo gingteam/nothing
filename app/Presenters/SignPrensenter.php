@@ -28,7 +28,7 @@ final class SignPresenter extends BasePresenter
                 );
 
                 $this->getUser()->login((string) $row->id);
-                $this->flashMessage('Login successful', 'info');
+                $this->flashMessage('Successfully logged in', 'success');
             } catch (InvalidArgumentException $e) {
                 $this->flashMessage($e->getMessage(), 'danger');
             }
@@ -40,6 +40,7 @@ final class SignPresenter extends BasePresenter
     public function actionOut()
     {
         $this->getUser()->logout(true);
+        $this->flashMessage('Successfully logged out', 'success');
         $this->redirect('Homepage:');
     }
 }

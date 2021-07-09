@@ -1,2 +1,22 @@
-<script src="//ulogin.ru/js/ulogin.js"></script>
-<div id="uLogin" data-ulogin="display=panel;theme=classic;fields=first_name,last_name,photo_big;providers=facebook;hidden=;redirect_uri={link this|escapeUrl};mobilebuttons=0;"></div>
+{block content}
+<div class="card">
+  <div class="card-body login-card-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+    <div class="social-auth-links text-center mb-3">
+      <p>- GingTeam Authenticator -</p>
+      <div id="uLogin" data-ulogin="display=buttons;theme=classic;fields=first_name,last_name,photo_big;providers=facebook;hidden=;redirect_uri={link this|escapeUrl};mobilebuttons=0;">
+        <button class="btn btn-block btn-primary" data-uloginbutton="facebook">
+          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+        </button>
+      </div>
+    </div>
+    <!-- /.social-auth-links -->
+  </div>
+  <!-- /.login-card-body -->
+</div>
+<!-- /.login-box -->
+{/block}
+{block scripts}
+  {include #parent}
+  <script src="//ulogin.ru/js/ulogin.js"></script>
+{/block}
