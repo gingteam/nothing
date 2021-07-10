@@ -11,6 +11,11 @@ class BasePresenter extends Nette\Application\UI\Presenter
 {
     protected Connection $database;
 
+    public function __construct()
+    {
+        $this->absoluteUrls = true;
+    }
+
     /**
      * Auto Inject.
      *
@@ -18,7 +23,11 @@ class BasePresenter extends Nette\Application\UI\Presenter
      */
     public function injectDatabase(Connection $database)
     {
-        $this->absoluteUrls = true;
         $this->database = $database;
+    }
+
+    protected function getResource()
+    {
+        return sprintf('%s:%s', $this->getName(), $this->getAction());
     }
 }

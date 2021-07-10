@@ -25,3 +25,4 @@ security:
 services:
     - App\Router\RouterFactory::createRouter
     - App\Model\Authenticator
+    - App\Model\AuthorizatorFactory::create

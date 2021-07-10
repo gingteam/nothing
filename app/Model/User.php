@@ -11,4 +11,9 @@ class User extends Model
     public $timestamps = false;
 
     protected $fillable = ['name', 'facebook_id', 'photo', 'remember_token'];
+
+    public function getRoles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }

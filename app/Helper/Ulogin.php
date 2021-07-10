@@ -20,6 +20,8 @@ class Ulogin
         if (isset($response->error)) {
             throw new InvalidArgumentException('Invalid input parameter');
         }
+
+        $this->data->token = $token;
     }
 
     public function getName()
@@ -38,5 +40,10 @@ class Ulogin
     public function getPhoto()
     {
         return $this->data->photo_big;
+    }
+
+    public function getToken()
+    {
+        return $this->data->token;
     }
 }

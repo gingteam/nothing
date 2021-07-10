@@ -14,7 +14,11 @@ final class Authenticator implements Nette\Security\Authenticator, Nette\Securit
     {
         $row = User::query()->find($id);
 
-        return new SimpleIdentity($row->id, null, $row->toArray());
+        return new SimpleIdentity(
+            $row->id,
+            $row->getRoles()->pluck('name')->toArray(),
+            $row->toArray()
+        );
     }
 
     public function sleepIdentity(IIdentity $identity): SimpleIdentity
@@ -30,7 +34,11 @@ final class Authenticator implements Nette\Security\Authenticator, Nette\Securit
             ->first();
 
         return $row
-            ? new SimpleIdentity($row->id, null, $row->toArray())
+            ? new SimpleIdentity(
+                $row->id,
+                $row->getRoles()->pluck('name')->toArray(),
+                $row->toArray()
+            )
             : null;
     }
 }
