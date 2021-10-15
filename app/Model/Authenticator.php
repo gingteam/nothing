@@ -7,17 +7,18 @@ namespace App\Model;
 use Nette;
 use Nette\Security\IIdentity;
 use Nette\Security\SimpleIdentity;
+use RedBeanPHP\R;
 
 final class Authenticator implements Nette\Security\Authenticator, Nette\Security\IdentityHandler
 {
     public function authenticate(string $id, ?string $password = null): SimpleIdentity
     {
-        $row = User::query()->find($id);
+        $row = R::findOne('user', 'id = ?', [$id]);
 
         return new SimpleIdentity(
             $row->id,
-            $row->getRoles()->pluck('name')->toArray(),
-            $row->toArray()
+            array_column($row->sharedRole, 'name'),
+            $row
         );
     }
 
@@ -30,14 +31,13 @@ final class Authenticator implements Nette\Security\Authenticator, Nette\Securit
     public function wakeupIdentity(IIdentity $identity): ?SimpleIdentity
     {
         // replace the proxy identity with a full identity, as in authenticate()
-        $row = User::query()->where('remember_token', $identity->getId())
-            ->first();
+        $row = R::findOne('user', 'remember_token = ?', [$identity->getId()]);
 
         return $row
             ? new SimpleIdentity(
                 $row->id,
-                $row->getRoles()->pluck('name')->toArray(),
-                $row->toArray()
+                array_column($row->sharedRole, 'name'),
+                $row
             )
             : null;
     }

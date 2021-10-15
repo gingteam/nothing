@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use App\Helper\Ulogin;
-use App\Model\User;
-use InvalidArgumentException;
+use RedBeanPHP\R;
 
 final class SignPresenter extends BasePresenter
 {
@@ -27,22 +26,21 @@ final class SignPresenter extends BasePresenter
             try {
                 $ulogin = new Ulogin($token, $this->link('this'));
 
-                $row = User::query()->where('facebook_id', $ulogin->getId())
-                    ->firstOr(function () use ($ulogin) {
-                        $user = new User();
-                        $user->name = $ulogin->getName();
-                        $user->facebook_id = $ulogin->getId();
-                        $user->photo = $ulogin->getPhoto();
-                        $user->remember_token = $ulogin->getToken();
-                        $user->save();
-                        $user->getRoles()->attach(1); // role: user
+                $user = R::findOneOrDispense('user', 'facebook_id = ?', [$ulogin->getId()]);
 
-                        return $user;
-                    });
+                if (!$user->id) {
+                    $user->name = $ulogin->getName();
+                    $user->facebook_id = $ulogin->getId();
+                    $user->photo = $ulogin->getPhoto();
+                    $user->remember_token = $ulogin->getToken();
+                    $user->sharedRoleList[] = R::load('role', 2);
 
-                $this->getUser()->login((string) $row->id);
+                    R::store($user);
+                }
+
+                $this->getUser()->login((string) $user->id);
                 $this->flashMessage('Successfully logged in', 'success');
-            } catch (InvalidArgumentException $e) {
+            } catch (\InvalidArgumentException $e) {
                 $this->flashMessage($e->getMessage(), 'danger');
             }
 
