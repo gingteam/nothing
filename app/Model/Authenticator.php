@@ -13,7 +13,7 @@ final class Authenticator implements Nette\Security\Authenticator, Nette\Securit
 {
     public function authenticate(string $id, ?string $password = null): SimpleIdentity
     {
-        $row = R::findOne('user', 'id = ?', [$id]);
+        $row = R::load('user', $id);
 
         return new SimpleIdentity(
             $row->id,
