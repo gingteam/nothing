@@ -9,4 +9,8 @@ final class HomepagePresenter extends BasePresenter
     public function renderDefault()
     {
     }
+
+    public function renderTest()
+    {
+    }
 }

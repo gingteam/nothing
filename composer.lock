@@ -4,8 +4,73 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cb09143731d7c07a3d71915a70ee9d5",
+    "content-hash": "e0fa3f687b62c68be09f999686927ea9",
     "packages": [
+        {
+            "name": "contributte/menu-control",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contributte/menu-control.git",
+                "reference": "f606e8f42407066aaf7877f367fcd5f42c9e36ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contributte/menu-control/zipball/f606e8f42407066aaf7877f367fcd5f42c9e36ed",
+                "reference": "f606e8f42407066aaf7877f367fcd5f42c9e36ed",
+                "shasum": ""
+            },
+            "require": {
+                "nette/application": "^3.0.4",
+                "nette/di": "^3.0",
+                "nette/http": "^3.0",
+                "nette/utils": "^3.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "nette/tester": "^2.1",
+                "ninjify/coding-standard": "^0.9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Contributte\\MenuControl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Kudera",
+                    "homepage": "https://kudera.dev"
+                },
+                {
+                    "name": "Milan Felix Šulc",
+                    "homepage": "https://f3l1x.io"
+                },
+                {
+                    "name": "Tomáš Jacík",
+                    "homepage": "https://tomasjacik.cz"
+                }
+            ],
+            "description": "Menu control for Nette framework",
+            "homepage": "https://github.com/contributte/menu-control",
+            "keywords": [
+                "breadcrumbs",
+                "component",
+                "control",
+                "menu",
+                "nette"
+            ],
+            "support": {
+                "issues": "https://github.com/contributte/menu-control/issues",
+                "source": "https://github.com/contributte/menu-control/tree/2.2.1"
+            },
+            "time": "2020-03-28T13:40:11+00:00"
+        },
         {
             "name": "gabordemooij/redbean",
             "version": "v5.7",

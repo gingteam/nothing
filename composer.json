@@ -19,7 +19,8 @@
 		"nette/utils": "^3.2",
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
-		"gabordemooij/redbean": "^5.7"
+		"gabordemooij/redbean": "^5.7",
+		"contributte/menu-control": "^2.2"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",
