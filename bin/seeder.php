@@ -11,6 +11,8 @@ App\Bootstrap::boot()
     ->createContainer()
     ->getByType(ToolBox::class);
 
+R::nuke();
+
 [$admin, $user] = R::dispense('role', 2);
 
 $admin->name = 'admin';

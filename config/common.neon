@@ -26,4 +26,4 @@ services:
     - App\Router\RouterFactory::createRouter
     - App\Model\Authenticator
     - App\Model\AuthorizatorFactory::create
-    redbean: RedBeanPHP\R::setup(sqlite:%appDir%/database.db)
+    redbean: GingTeam\RedBean\Facade::setup(sqlite:%appDir%/database.db)

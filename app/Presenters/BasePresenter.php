@@ -7,6 +7,7 @@ namespace App\Presenters;
 use Contributte\MenuControl\UI\IMenuComponentFactory;
 use Contributte\MenuControl\UI\MenuComponent;
 use Nette;
+use RedBeanPHP\R;
 use RedBeanPHP\ToolBox;
 
 class BasePresenter extends Nette\Application\UI\Presenter
@@ -23,6 +24,7 @@ class BasePresenter extends Nette\Application\UI\Presenter
     public function injectToolBox(ToolBox $toolBox)
     {
         $this->toolBox = $toolBox;
+        R::freeze(false);
     }
 
     public function injectMenu(IMenuComponentFactory $menu)
